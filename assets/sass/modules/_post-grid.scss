@@ -62,8 +62,9 @@
 
   &__grid {
     display: grid;
-    gap: 24px;
+    gap: 22px;
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
     //grid-template-rows: repeat(5, 425px);
     position: relative;
 
@@ -94,12 +95,18 @@
     overflow: hidden;
     position: relative;
 
+    aspect-ratio: 3/2;
+    background-color: #ccc;
+
     @include break(lg) {
       aspect-ratio: 1 / 1;
     }
 
     a {
       text-decoration: none;
+      display: block;
+      width: 100%;
+      height: 100%;
 
       > * {
         transition: $transition;
@@ -107,12 +114,22 @@
     }
     &.landscape {
       .hero__banner {
-        min-height: 410px;
-        grid-row: span 1;
+        //min-height: 410px;
+        //grid-row: span 1;
+
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 100%;
 
         video {
-          height: 410px;
+          //height: 410px;
           object-fit: cover;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
         }
 
         @include break(lg) {
@@ -123,14 +140,16 @@
 
     &.portrait {
       grid-row: span 2;
+      aspect-ratio: 4/5.5;
 
+      @include break(lg) {
+        aspect-ratio: 1 / 1;
+        grid-row: span 1;
+      }   
+  
       .hero__banner {
         min-height: 103vh;
-
-        video {
-          height: 103vh;
-          object-fit: cover;
-        }
+        min-height: 100%;
 
         @include break(lg) {
           min-height: 100%;
@@ -196,13 +215,6 @@
       width: 100%;
 
       @include break(lg) {
-        background: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.5) 100%,
-        transparent 100%,
-        rgba(0, 0, 0, 0.5) 100%
-      );
-        opacity: 1;
         padding: 36px 18px;
       }
 

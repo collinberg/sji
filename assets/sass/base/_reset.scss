@@ -1,10 +1,6 @@
 html {
     scroll-behavior: smooth;
     font-size: 22px;
-
-    @include break(md) {
-        font-size: 18px;
-    }
 }
 
 body {
@@ -24,7 +20,7 @@ body {
         font-size: 3.409rem;
 
         @include break(md) {
-            font-size: 1.909rem;
+            font-size: 2rem;
         }
     }
 
@@ -59,13 +55,12 @@ body {
         font-size: 1rem;
     }
     p {
-        font-size: 1.2272rem;
-        line-height: 1.6818rem;
+        line-height: 1.35em;
+    }
 
-        @include break(lg) {
-            font-size: 1.0555rem;
-            line-height: 1.35em;
-        }
+    img {
+        width: 100%;
+        height: auto;
     }
 
     blockquote {
@@ -77,9 +72,14 @@ body {
 
         cite {
             display: block;
-            font-size: 0.909rem;
+            font-size: 0.8rem;
+            line-height: 1em;
             font-style: normal;
             margin: 50px 0 0;
+
+            @include break(sm) {
+                font-size: 0.7em;
+            }
         }
 
         &:before {
@@ -151,8 +151,9 @@ body {
     }
 }
 .body-copy-large {
-    font-size: 1.45rem;
+    font-size: 1.25rem;
     line-height: 1.6rem;
+    display: block;
 
     @include break(lg) {
         font-size: 1rem;
