@@ -319,6 +319,10 @@ jQuery(document).ready(function ($) {
     $('.accordion-item:first-of-type .accordion-collapse').addClass('show');
   }
 
+  //FitVideo
+  $(".post-content").fitVids();
+
+
   //Contact Page Image Slider
 
       $(".js-slick-contact").slick({

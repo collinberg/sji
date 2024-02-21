@@ -126,12 +126,14 @@ function sji_theme_scripts() {
 	wp_enqueue_script( 'gsap-js', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'gsap-scroll-trigger', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js', array(), _S_VERSION, true );
 
+	wp_enqueue_script( 'fitvid',  get_template_directory_uri() . '/assets/js/fitvid.js', array('jquery'), _S_VERSION, true );
+
 	//should be last to make sure all libraries are loaded
 	wp_enqueue_script( 'cookie-js', get_template_directory_uri() . '/assets/js/js.cookie.min.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'makeway-custom-scripts-js', get_template_directory_uri() . '/assets/js/scripts.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'filtering-js', get_template_directory_uri() . '/assets/js/filtering.js', array(), _S_VERSION, true );
 	if(is_front_page() ):
-		wp_enqueue_script( 'home-js', get_template_directory_uri() . '/assets/js/home.js', array(), _S_VERSION, true );
+		wp_enqueue_script( 'home-js', get_template_directory_uri() . '/assets/js/home.js', array('jquery','fitvid'), _S_VERSION, true );
 	endif;
 }
 add_action( 'wp_enqueue_scripts', 'sji_theme_scripts' );
