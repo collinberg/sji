@@ -16,8 +16,8 @@
 
   &__grid {
     display: grid;
-    gap: 22px;
-    margin: 40px 0 100px;
+    gap: 1em;
+    margin: 40px 0 0;
     grid-template-columns: repeat(3, 1fr);
 
     @include break(sm) {
@@ -34,6 +34,7 @@
       .hero__banner {
         height: 100%;
         min-height: auto;
+        aspect-ratio: 1/1;
         margin: 0;
 
         @include break(lg) {
@@ -76,33 +77,11 @@
     .btn--asterisk {
         margin-bottom: 0;
         margin-left: auto;
+        aspect-ratio: auto;
     }
     &:hover img {
       filter: grayscale(100%);
       transform: scale(1.1);
     }
-  }
-}
-
-.post {
-    &__author {
-        display: flex;
-        gap: 17px;
-        align-items: flex-end;
-        margin-top: 30px;
-        font-size: 20px;
-        &-name {
-
-            font-weight: 900;
-        }
-    }
-    &__container {
-        margin-top: 134px;
-    }
-}
-
-.btn--asterisk {
-  &.no-show {
-    display: none;
   }
 }

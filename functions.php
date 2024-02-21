@@ -3,7 +3,7 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.1.4' );
+	define( '_S_VERSION', '1.2.72' );
 }
 
 if ( ! function_exists( 'sji_theme_setup' ) ) :
@@ -130,6 +130,9 @@ function sji_theme_scripts() {
 	wp_enqueue_script( 'cookie-js', get_template_directory_uri() . '/assets/js/js.cookie.min.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'makeway-custom-scripts-js', get_template_directory_uri() . '/assets/js/scripts.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'filtering-js', get_template_directory_uri() . '/assets/js/filtering.js', array(), _S_VERSION, true );
+	if(is_front_page() ):
+		wp_enqueue_script( 'home-js', get_template_directory_uri() . '/assets/js/home.js', array(), _S_VERSION, true );
+	endif;
 }
 add_action( 'wp_enqueue_scripts', 'sji_theme_scripts' );
 

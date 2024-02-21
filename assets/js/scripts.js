@@ -62,6 +62,7 @@ jQuery(document).ready(function ($) {
 
   //Main Nav - mobile Nav toggle
   $(".navbar-toggler").click(function () {
+    $('body').toggleClass('nav-open');
     $(".navbar-toggler").toggleClass("js-active");
     navTl.play();
   });
@@ -378,6 +379,7 @@ jQuery(document).ready(function ($) {
     const fullWidth = elementsWidth + (gap * ($('.horizontal-scroll-grid__row-1 img').length - 1));
     const scrollTo = $(window).width() - (2 * paddingLeft) - fullWidth;
 
+    console.log("FUll width: " + fullWidth);
     horizontalAnimation = gsap.to(panels, {
       x: scrollTo,
       ease: "none",
@@ -394,92 +396,6 @@ jQuery(document).ready(function ($) {
     });
   }
 
-
-  //for homepage hero video
-  //close vid on scroll
-	$('.home').bind('mousewheel', function(e) {
-		closeHomeVideo();	  
-	});
-
-  function closeHomeVideo(){
-      $("#hero-video-container").fadeOut(400);
-      window.setTimeout(resumeScrolling, 500);
-      animateLetters();
-  }
-
-  function resumeScrolling() {
-    $('body').css("overflow-y", "auto");
-  }
-
-  function openHomeVideo() {
-    const video = document.getElementById('hero-video');
-    if ($(window).width() > 991 && !!video) {
-
-      video.currentTime = 0;
-
-      $("#hero-video-container").show();
-      $('body').css("overflow-y", "hidden");
-
-      //when video has ended, fade out container and resume normal scrolling
-      $("#hero-video").on("ended", function() {
-        closeHomeVideo();
-      });
-
-      $("#close-icon").click(function () {
-        closeHomeVideo();
-      });
-
-      Cookies.set('homevideo', 'true', { expires: 7 });
-    }
-    else {
-      animateLetters();
-    }
-  }
-
-  $("#watch-again").click(function (e) {
-    Cookies.set('homevideo', 'false', { expires: 7 });
-    openHomeVideo();
-  });
-
-
-  var home_video = Cookies.get('homevideo');
-
-  if (home_video != "true"){
-    openHomeVideo();
-  } else {
-    animateLetters();
-  }
-
-
-  function animateLetters() {
-    //console.log ("called animateLetters");
-    //word swap animation for home page
-   const wordSwapHome = [
-    "thrive.",
-    "break through.",
-    "grow.",
-    "connect.",
-    "unique.",
-    "fabulous.",
-    "dazzle.",
-    "inspire.",
-    "captivate.",
-    "stand apart."
-  ];
-  let counter1 = 0;
-  const wordTimer = setInterval(fancyTextHome, 800);
-  function fancyTextHome() {
-    $('#word-swap-home').fadeOut(800, function() {
-      $('#word-swap-home').html(wordSwapHome[counter1]);
-      counter1++;
-      $('#word-swap-home').fadeIn(800);
-      if (counter1 == wordSwapHome.length) {
-        clearInterval(wordTimer);
-      }
-    });
-  }
-}
-
   //word swap animation for approach page
   const wordSwapApproach = [
     "compellingly creative.",
@@ -489,7 +405,7 @@ jQuery(document).ready(function ($) {
     "elegantly<br class='mobile-only'> simple."
   ];
   let counter2 = 0;
-  const wordTimer2 = setInterval(fancyTextApproach, 1000);
+  const wordTimer2 = setInterval(fancyTextApproach, 1600);
   function fancyTextApproach() {
     $('#word-swap-approach').fadeOut(800, function() {
       $('#word-swap-approach').html(wordSwapApproach[counter2]);
