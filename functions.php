@@ -75,6 +75,7 @@ if ( ! function_exists( 'sji_theme_setup' ) ) :
 		);
 	}
 endif;
+
 add_action( 'after_setup_theme', 'sji_theme_setup' );
 
 /**
@@ -137,6 +138,56 @@ function sji_theme_scripts() {
 	endif;
 }
 add_action( 'wp_enqueue_scripts', 'sji_theme_scripts' );
+
+/*
+ * 
+ * Admin Area Styles
+ * 
+ */
+function sji_admin_style() {
+	add_editor_style('/assets/style/admin.css');
+}
+add_action( 'admin_init', 'sji_admin_style' );
+
+
+
+/**
+ * Custom Title Function for More Detailed Titles
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ */
+function sji_title()
+    {
+        if (is_home()) {
+            if ($home = get_option('page_for_posts', true)) {
+                return get_the_title($home);
+            }
+            return __('Latest Posts', 'sage');
+        }
+        if(is_tax('tribe_events_cat') ){
+          return single_term_title();
+        }
+
+        if (is_archive() AND !is_category() AND !is_month() ) {
+            return post_type_archive_title();
+        }
+        if(is_category() or is_month() ){
+          return get_the_archive_title();
+        }
+
+        if (is_search()) {
+            return sprintf(__('Search Results for %s', 'sage'), get_search_query());
+        }
+        if (is_404()) {
+            return __('Not Found', 'sage');
+        }
+
+        return get_the_title();
+    }
+
+
+
+
 
 //Register Options Page
 if( function_exists('acf_add_options_page') ) {
